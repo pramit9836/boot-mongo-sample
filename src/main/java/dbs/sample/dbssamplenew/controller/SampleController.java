@@ -67,4 +67,17 @@ public class SampleController {
 		
 	}
 	
+	@PostMapping(path = "/updatedOrderStatus", consumes = "application/json", produces = "application/json")
+	public String updatedOrderStatus(@RequestBody String requestBody){
+		
+		OrderDTO orderDTO = gson.fromJson(requestBody, OrderDTO.class);
+		String returnValue = orderPlacementService.updateOrderStatus(orderDTO);
+		
+		JsonObject response = new JsonObject();
+		response.addProperty("status", returnValue);
+		response.addProperty("code", HttpStatus.OK.toString());
+		
+		return gson.toJson(response);
+	}
+	
 }

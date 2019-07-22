@@ -12,6 +12,8 @@ public interface OrderRepository extends MongoRepository<OrderDTO, String> {
 	
 	public ArrayList<OrderDTO> findByRetailerIdAndStatus(long retailerId, String status);
 	
+	public OrderDTO save(OrderDTO orderDTO);
+	
 	
 
 }

@@ -3,8 +3,6 @@
  */
 package dbs.sample.dbssamplenew.service;
 
-import static org.mockito.Matchers.doubleThat;
-
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +63,18 @@ public class OrderPlacementService{
 		
 		
 		return orderList;
+		
+	}
+	
+	
+	public String updateOrderStatus(OrderDTO orderDTO){
+		
+		if(orderDTO.getStatus() == null || orderDTO.getStatus().equalsIgnoreCase("pending")){
+			orderDTO.setStatus("accepted");
+			orderRepo.save(orderDTO);
+			return "Order Accepted";
+		}
+		return "Failed to Accept Order";
 		
 	}
 	
